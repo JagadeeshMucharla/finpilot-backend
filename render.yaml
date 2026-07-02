@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: finpilot-backend
+    env: python
+    region: singapore
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://neondb_owner:npg_6RLeSNdBwtH5@ep-little-bar-aov71egv.c-2.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+      - key: SECRET_KEY
+        value: finpilot-super-secret-key-jagadeesh-2025
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "10080"
+      - key: FINNHUB_API_KEY
+        value: d9266k9r01qrfbe8mon0d9266k9r01qrfbe8mong
+      - key: FRONTEND_URL
+        value: https://finpilot-ai.vercel.app
+      - key: APP_ENV
+        value: production
